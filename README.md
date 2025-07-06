@@ -1,46 +1,63 @@
-# Expense Statement App
+# Robot Screenshot Listener
 
-This project is an Android application designed to read messages containing transaction details and sort expenses for the month into a formatted statement. It utilizes Python for the backend logic.
+Listener for Web based testing Screenshots with Robot framework and Selenium 
+
+## Installation
+pip install robotframework-auto-screenshot-listener
 
 ## Project Structure
 
 ```
-expense-statement-app
-├── src
-│   ├── main.py               # Entry point of the application
-│   ├── message_reader.py      # Handles reading and filtering messages
-│   ├── expense_parser.py      # Parses and sorts expense details
-│   └── statement_generator.py  # Generates and saves the expense statement
+Robot Screenshot Listener
+├── robotframework_auto_screenshot_listener
+│   ├── __init__.py               # Entry point of the application
+│   ├── ScreenshotListener.py      # Handles reading and filtering messages
 ├── requirements.txt           # Lists project dependencies
 └── README.md                  # Project documentation
 ```
 
-## Installation
+**Monitored Selenium Keywords**
+   The listener captures screenshots for the following Selenium keywords:
+   
+   1. Click Element
+   2. Input Text
+   3. Press Keys
+   4. Get Text
+   5. Get Element Attribute
+   6. Page Should Contain
+   7. Page Should Not Contain
+   8. Element Should Be Visible
+   9. Element Should Not Be Visible
+   10. Close Browser
+   11. Click Button
+   12. Click Link
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/expense-statement-app.git
-   cd expense-statement-app
-   ```
+**How It Works**
+   . Test Start: Creates a root directory and test-specific subdirectory
+   . Keyword Execution: Before each monitored Selenium keyword, captures a screenshot
+   . File Naming: Screenshots are named sequentially (selenium_0.png, selenium_1.png, etc.)
+   . Test End: Resets the screenshot counter for the next test
 
-2. Install the required dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+**Technical Details**
+Class Structure
+   . API Version: Uses Robot Framework Listener API version 2
+   . Key Methods:
+      . start_test(): Initializes test-specific screenshot directory
+      . start_keyword(): Captures screenshots before keyword execution
+      . end_keyword(): Handles post-keyword cleanup
+Dependencies
+   . robot.libraries.BuiltIn: For accessing Robot Framework variables and keywords
+   . robot.libraries.String: For string manipulation
+   . os: For file system operations
+   . shutil: For directory operations
+
+
 
 ## Usage
 
-1. Run the application:
-   ```
-   python src/main.py
-   ```
-
-2. The application will fetch messages from your device, filter for transaction details, parse the expenses, and generate a monthly statement.
+   . run robot command in terminal as robot --listener robotframework_auto_screenshot_listener ScreenshotListener:<ScreenshotDirectory> <TestFilePath.robot>
 
 ## Contributing
 
 Feel free to submit issues or pull requests if you have suggestions or improvements for the project.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
