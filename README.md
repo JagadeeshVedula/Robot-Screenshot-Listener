@@ -1,6 +1,6 @@
 # Robot Screenshot Listener
 
-Listener for Web based testing Screenshots with Robot framework and Selenium 
+Listener for Automation testing Screenshots with Robot framework-Selenium,Browser and Appium Libraries
 
 ## Installation
 pip install robotframework-auto-screenshot-listener
@@ -31,6 +31,8 @@ Robot Screenshot Listener
    10. Close Browser
    11. Click Button
    12. Click Link
+   13. Click
+   14. Fill Text
 
 **How It Works**
    . Test Start: Creates a root directory and test-specific subdirectory
@@ -55,7 +57,7 @@ Dependencies
 
 ## Usage
 
-   . run robot command in terminal as robot --listener robotframework_auto_screenshot_listener.ScreenshotListener:<ScreenshotDirectory> <TestFilePath.robot>
+   robot --listener robotframework_auto_screenshot_listener.ScreenshotListener:ScreenshotDirectoryName <TestFilePath.robot>
 
 ## Contributing
 
