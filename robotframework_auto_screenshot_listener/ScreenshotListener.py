@@ -8,7 +8,7 @@ class ScreenshotListener:
 
     def __init__(self, screenshot_dir=None):
         self.builtin = BuiltIn()
-        self.index = 0
+        self.ScreenshotNumber = 0
         self.testcompleted = False
         self.screenshot_dir=screenshot_dir
         self.rootdir=screenshot_dir
@@ -50,14 +50,19 @@ class ScreenshotListener:
             test=BuiltIn().get_variable_value('${TEST NAME}')
             
             if kwname in self.SeleniumKeywords and 'Open Browser' not in kwname and self.testcompleted is False and 'Close Browser' not in kwname:   
-                screenshot_name = f"selenium_{self.index}.png"
-                screenshot_path = os.path.join(self.screenshot_dir, screenshot_name)
-                BuiltIn().run_keyword("SeleniumLibrary.Capture Page Screenshot",self.rootdir+'/'+test+'/'+screenshot_name)
-                self.index += 1
+                screenshot_name = f"selenium_{self.ScreenshotNumber}.png"
+                # screenshot_path = os.path.join(self.screenshot_dir, screenshot_name)
+                screenshot_path=BuiltIn().run_keyword("SeleniumLibrary.Capture Page Screenshot",screenshot_name)
+                filename=os.path.basename(screenshot_path)
+                shutil.move(screenshot_path,self.rootdir+'/'+test+'/'+filename)
+                self.ScreenshotNumber += 1
             if 'Close Browser' in kwname:
-                screenshot_name = f"selenium_{self.index}.png"
-                BuiltIn().run_keyword("SeleniumLibrary.Capture Page Screenshot",self.rootdir+'/'+test+'/'+screenshot_name)
-                self.index += 1
+                screenshot_name = f"selenium_{self.ScreenshotNumber}.png"
+                screenshot_path=BuiltIn().run_keyword("SeleniumLibrary.Capture Page Screenshot",screenshot_name)
+                filename=os.path.basename(screenshot_path)
+                shutil.move(screenshot_path,self.rootdir+'/'+test+'/'+filename)
+                # screenshot_path=BuiltIn().run_keyword("SeleniumLibrary.Capture Page Screenshot",self.rootdir+'/'+test+'/'+screenshot_name)
+                self.ScreenshotNumber += 1
                 
 
         except Exception as e:
@@ -68,9 +73,12 @@ class ScreenshotListener:
         Called after a keyword ends.
         Logs the end of the keyword execution.
         """
-        keyword_name=str(name).split('.') # Replace spaces and dots
-        kwname = keyword_name[1].replace('_',' ')
-        if 'Close Browser' in kwname:
-            self.index=0
+        try:
+            keyword_name=str(name).split('.') # Replace spaces and dots
+            kwname = keyword_name[1].replace('_',' ')
+            if 'Close Browser' in kwname:
+                self.ScreenshotNumber=0
+        except Exception as e:
+            pass
             
         

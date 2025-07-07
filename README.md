@@ -55,7 +55,7 @@ Dependencies
 
 ## Usage
 
-   . run robot command in terminal as robot --listener robotframework_auto_screenshot_listener ScreenshotListener:<ScreenshotDirectory> <TestFilePath.robot>
+   . run robot command in terminal as robot --listener robotframework_auto_screenshot_listener.ScreenshotListener:<ScreenshotDirectory> <TestFilePath.robot>
 
 ## Contributing
 
