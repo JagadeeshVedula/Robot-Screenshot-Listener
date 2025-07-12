@@ -83,7 +83,7 @@ class ScreenshotListener:
                     self.ScreenshotNumber += 1
             elif self.library == 'Browser':
                 if kwname in self.BrowserKeywords and 'New Browser' not in kwname and self.testcompleted is False and 'Close Browser' not in kwname:   
-                    screenshot_name = f"browser_{self.ScreenshotNumber}.png"
+                    screenshot_name = f"browser_{self.ScreenshotNumber}"
                     screenshot_path=BuiltIn().run_keyword("Browser.Take Screenshot",screenshot_name)
                     filename=os.path.basename(screenshot_path)
                     shutil.move(screenshot_path,self.rootdir+'/'+test+'/'+filename)
@@ -102,7 +102,7 @@ class ScreenshotListener:
                     filename=os.path.basename(screenshot_path)
                     shutil.move(screenshot_path,self.rootdir+'/'+test+'/'+filename)
                     self.ScreenshotNumber += 1
-                if 'Close Browser' in kwname:
+                if 'Close Application' in kwname:
                     screenshot_name = f"appium_{self.ScreenshotNumber}.png"
                     screenshot_path=BuiltIn().run_keyword("AppiumLibrary.Capture Page Screenshot",screenshot_name)
                     filename=os.path.basename(screenshot_path)

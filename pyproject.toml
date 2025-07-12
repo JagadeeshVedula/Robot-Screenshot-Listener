@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "robotframework-auto-screenshot-listener" # Choose a unique and descriptive name
-version = "0.1.6"
+version = "0.1.8"
 authors = [
   { name="Jagadeesh Vedula", email="vedulajagadeesh1994@gmail.com" },
 ]

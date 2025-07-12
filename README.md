@@ -41,12 +41,14 @@ Robot Screenshot Listener
    . Test End: Resets the screenshot counter for the next test
 
 **Technical Details**
+
 Class Structure
    . API Version: Uses Robot Framework Listener API version 2
    . Key Methods:
       . start_test(): Initializes test-specific screenshot directory
       . start_keyword(): Captures screenshots before keyword execution
       . end_keyword(): Handles post-keyword cleanup
+
 Dependencies
    . robot.libraries.BuiltIn: For accessing Robot Framework variables and keywords
    . robot.libraries.String: For string manipulation
